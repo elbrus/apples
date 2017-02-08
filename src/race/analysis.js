@@ -197,6 +197,7 @@ window.apples.analysis = window.apples.analysis || (function($) {
 			var i,
 				iLen,
 				isPracticeSet = $('#PracticeData').length ? 0 : -2,
+				isOldSeason = parseInt($('h1.block').text().split('Season ')[1].split(' -')[0], 10) < 55 ? -1 : 0,
 				data = getRaceLapsData($('table:eq(' + (3 + isPracticeSet) + ') tr:gt(0)'));
 
 			if (preferences.SettingsSetup.RA.Total) {
@@ -249,7 +250,7 @@ window.apples.analysis = window.apples.analysis || (function($) {
 
 			if (preferences.SettingsSetup.RA.Avg) {
 				var lap = 1,
-					tableElem = $('table:eq(' + ((preferences.SettingsSetup.RA.Stats ? 19 : 18) + isPracticeSet) + ')');
+					tableElem = $('table:eq(' + ((preferences.SettingsSetup.RA.Stats ? 19 : 18) + isPracticeSet + isOldSeason) + ')');
 
 				if (tableElem.parent().attr('id') !== 'dvFinAnalisysTable' && tableElem.text().indexOf('Technical problems') === -1) {
 					var rows = tableElem.find('tr');
