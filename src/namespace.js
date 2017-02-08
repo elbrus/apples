@@ -1,0 +1,1 @@
+window.apples = window.apples || {};
