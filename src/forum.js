@@ -16,17 +16,28 @@ window.apples.forum = window.apples.forum || (function(Driver, Director, RaceAna
 			params = { ID: null, Q1: null, Q2: null, Practice: [], Driver: null, TD: null, Test: null, Race: null, NextRace: null, Staff: null };
 		}
 
+		function hideOverlay() {
+			$('.overlay, .overlay-message').hide();
+		}
+
 		function postData() {
-			$.ajax({
-				type: 'POST',
-				url: 'http://obuoliai.andajus.lt/gprotest.php',
-				data: JSON.stringify(params),
-				dataType: 'json',
-				contentType: 'application/json;charset=UTF-8',
-			    complete: function() {
-			    	$('.overlay, .overlay-message').hide();
-			    }
-			});
+			var data = JSON.stringify(params);
+
+			if (gproExtensionId) {
+				chrome.runtime.sendMessage(gproExtensionId, {
+					action: 'xpost',
+					data: data
+				}, hideOverlay);
+			} else {
+				$.ajax({
+					type: 'POST',
+					url: 'http://obuoliai.andajus.lt/gprotest.php',
+					data: data,
+					dataType: 'json',
+					contentType: 'application/json;charset=UTF-8',
+					complete: hideOverlay
+				});
+			}
 		}
 
 		function fillInfo() {
