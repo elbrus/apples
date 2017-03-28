@@ -23,8 +23,8 @@ window.apples.forum = window.apples.forum || (function(Driver, Director, RaceAna
 		function postData() {
 			var data = JSON.stringify(params);
 
-			if (gproExtensionId) {
-				chrome.runtime.sendMessage(gproExtensionId, {
+			if (window.gproExtensionId) {
+				chrome.runtime.sendMessage(window.gproExtensionId, {
 					action: 'xpost',
 					data: data
 				}, hideOverlay);
