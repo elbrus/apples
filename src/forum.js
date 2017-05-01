@@ -22,12 +22,20 @@ window.apples.forum = window.apples.forum || (function(Driver, Director, RaceAna
 
 		function postData() {
 			var data = JSON.stringify(params);
+			var extensionId = window.gproExtensionId;
 
-			if (window.gproExtensionId) {
-				chrome.runtime.sendMessage(window.gproExtensionId, {
-					action: 'xpost',
-					data: data
-				}, hideOverlay);
+			if (extensionId) {
+				if (browser && browser.runtime) {
+					browser.runtime.sendMessage(extensionId, {
+						action: 'xpost',
+						data: data
+					}).then(hideOverlay);
+				} else if (chrome && chrome.runtime) {
+					chrome.runtime.sendMessage(extensionId, {
+						action: 'xpost',
+						data: data
+					}, hideOverlay);
+				}
 			} else {
 				$.ajax({
 					type: 'POST',
