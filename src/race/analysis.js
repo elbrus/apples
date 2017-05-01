@@ -214,43 +214,9 @@ window.apples.analysis = window.apples.analysis || (function($) {
 				$('table:eq(' + (3 + isPracticeSet) + ') > *').append('<tr style="" onmouseover="this.style.backgroundColor=\'#3B2D47\';" onmouseout="this.style.backgroundColor=\'\';"><td bgcolor="#1b2d47" align="center" class="speccell" colspan="2"><b>Total</b></td><td align="center" class="speccell">&nbsp;</td><td align="center" class="speccell">&nbsp;</td><td align="center" class="speccell">&nbsp;</td><td align="center" class="speccell">' + roundNumber(avg[0], 2) + '&deg;</td><td align="center" class="speccell">' + roundNumber(avg[1], 2) + '%</td><td nowrap="" align="center" class="speccell">&nbsp;</td></tr>');
 			}
 
-			if (preferences.SettingsSetup.RA.Stats) {
-				var lapTimeStats = [[0, 0]],
-					statsIndex = 0;
-
-				data.lapTimes.sort().forEach(function(orderedUnit) {
-					var timeUnits = orderedUnit.split(':');
-
-					if (timeUnits.length === 1) {
-						timeUnits[1] = timeUnits[0];
-						timeUnits[0] = 0;
-					}
-
-					var timeUnits2 = timeUnits[1].split('.');
-
-					if (lapTimeStats[statsIndex][0] < timeUnits[0] || lapTimeStats[statsIndex][1] < timeUnits2[0]) {
-						statsIndex++;
-						lapTimeStats[statsIndex] = [timeUnits[0], timeUnits2[0]];
-						lapTimeStats[statsIndex][3] = 1;
-					} else {
-						lapTimeStats[statsIndex][3] = lapTimeStats[statsIndex][3] + 1;
-					}
-				});
-
-				var ok = ['<br /><h2>Lap time statistics</h2><table class="styled center" cellspacing="1" cellpadding="1" border="0" align="center" width="100%" id="statisticas"><tr bgcolor="#1b2d47"><td align="center" class="speccellnobot">Time</td><td align="center" class="speccellnobot">Repeats</td><td align="center" class="speccellnobot">%</td></tr>'];
-
-				for (i in lapTimeStats) {
-					if (i > 0) ok.push('<tr onmouseout="this.style.backgroundColor=\'\';" onmouseover="this.style.backgroundColor=\'#3B2D47\';"><td align="center" class="speccellnobot">' + lapTimeStats[i][0] + ':' + lapTimeStats[i][1] + '</td><td align="center" color="#88bb88" class="speccellnobot">' + lapTimeStats[i][3] + '</td><td align="center" class="speccellnobot">' + ((lapTimeStats[i][3] * 100) / data.lapTimes.length).toFixed(2) + '%</td></tr>');
-				}
-
-				ok.push('</table>');
-
-				$('table:eq(' + (5 + isPracticeSet) + ')').after(ok.join(''));
-			}
-
 			if (preferences.SettingsSetup.RA.Avg) {
 				var lap = 1,
-					tableElem = $('table:eq(' + ((preferences.SettingsSetup.RA.Stats ? 19 : 18) + isPracticeSet + isOldSeason) + ')');
+					tableElem = $('table:eq(' + (18 + isPracticeSet + isOldSeason) + ')');
 
 				if (tableElem.parent().attr('id') !== 'dvFinAnalisysTable' && tableElem.text().indexOf('Technical problems') === -1) {
 					var rows = tableElem.find('tr');

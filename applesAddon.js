@@ -72,7 +72,6 @@ window.preferences = window.preferences || {
 			Skills: true
 		},
 		RA: {
-			Stats: true,
 			Avg: true,
 			Total: true
 		}
