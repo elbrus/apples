@@ -23,7 +23,7 @@
 			var onlineInfo = $('#managersonline');
 
 			if (onlineInfo) {
-				onlineInfo.prepend('<li><a href="#" class="send-data" onclick="window.apples.forum.sendData()">Send data</a></li>');
+				onlineInfo.prepend('<li><a href="#" onclick="window.apples.forum.sendData()">Send data</a></li>');
 				$('body').append('<div style="position:absolute;top:0;bottom:0;left:0;right:0;display:none;z-index:9998;background-color:rgba(190,190,190,0.4);" class="overlay"></div><div style="position:absolute;left:45%;top:25%;display:none;z-index:9999;font-weight:bold;font-size:35px;color:#0f0;" class="overlay-message">Sending data...</div>');
 			}
 		}

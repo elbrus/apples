@@ -4,11 +4,7 @@ module.exports = function(grunt) {
 		 	main: ['src/**/*.js']
 		},
 		uglify: {
-			/* options: {
-				mangle: false,
-				beautify: true
-			},
-			*/main: {
+			main: {
 				files: {
 					'applesForum.js': [
 						'src/namespace.js',
@@ -26,11 +22,24 @@ module.exports = function(grunt) {
 					}
 				}
 			}
+		},
+		concat: {
+			options: {},
+			main: {
+				src: ['applesAddon.js', 'applesForum.js'],
+				dest: 'apples.js'
+			}
+		},
+		clean: {
+			before: ['apples.js'],
+			after: ['applesForum.js']
 		}
 	});
 
+	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 
-	grunt.registerTask('default', ['jshint', 'uglify']);
+	grunt.registerTask('default', ['clean:before', 'jshint', 'uglify', 'concat', 'clean:after']);
 };

@@ -1,6 +1,6 @@
 {
   "name": "Apples",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Add-On",
   "keywords": [
     "apples"
@@ -10,7 +10,9 @@
   "devDependencies": {
     "grunt": "1.0.1",
     "grunt-cli": "1.2.0",
+    "grunt-contrib-clean": "1.1.0",
+    "grunt-contrib-concat": "1.0.1",
     "grunt-contrib-jshint": "1.1.0",
-    "grunt-contrib-uglify": "2.1.0"
+    "grunt-contrib-uglify": "2.3.0"
   }
 }

@@ -4,6 +4,16 @@ window.apples.forum = window.apples.forum || (function(Driver, Director, RaceAna
 	var ApplesForum = function() {
 		var params;
 
+		window.addEventListener('message', function(event) {
+			if (event.source !== window) {
+				return;
+			}
+
+			if (event.data.type && event.data.type === 'DATA_DONE') {
+				hideOverlay();
+			}
+		}, false);
+
 		this.sendData = function() {
 			$('.overlay, .overlay-message').show();
 
@@ -22,30 +32,11 @@ window.apples.forum = window.apples.forum || (function(Driver, Director, RaceAna
 
 		function postData() {
 			var data = JSON.stringify(params);
-			var extensionId = window.gproExtensionId;
 
-			if (extensionId) {
-				if (browser && browser.runtime) {
-					browser.runtime.sendMessage(extensionId, {
-						action: 'xpost',
-						data: data
-					}).then(hideOverlay);
-				} else if (chrome && chrome.runtime) {
-					chrome.runtime.sendMessage(extensionId, {
-						action: 'xpost',
-						data: data
-					}, hideOverlay);
-				}
-			} else {
-				$.ajax({
-					type: 'POST',
-					url: 'http://obuoliai.andajus.lt/gprotest.php',
-					data: data,
-					dataType: 'json',
-					contentType: 'application/json;charset=UTF-8',
-					complete: hideOverlay
-				});
-			}
+			window.postMessage({
+				type: 'DATA_POST',
+				text: JSON.stringify(params)
+			}, '*');
 		}
 
 		function fillInfo() {
