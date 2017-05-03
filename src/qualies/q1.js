@@ -76,7 +76,7 @@ window.apples.qualify1 = window.apples.qualify1 || (function($) {
 		}
 
 		this.addFunctionality = function() {
-			if (preferences.SettingsSetup.Q1) {
+			if (preferences.SettingsSetup.Q1 && window.getLapComment) {
 				var lapComment, 
 					parts, 
 					message;
