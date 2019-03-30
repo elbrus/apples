@@ -18,7 +18,7 @@ module.exports = function(grunt) {
 				},
 				options: {
 					mangle: {
-						except: ['jQuery']
+						reserved: ['jQuery']
 					}
 				}
 			}

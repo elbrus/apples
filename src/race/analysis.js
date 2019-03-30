@@ -24,7 +24,7 @@ window.apples.analysis = window.apples.analysis || (function($) {
 				lap = 1,
 				pitsData = [],
 				tpData = [],
-				pitsTable = $('table:eq(' + (18 + isPracticeSet) + ')', data);
+				pitsTable = $('table:eq(' + (19 + isPracticeSet) + ')', data);
 
 			if (pitsTable.parent().attr('id') !== 'dvFinAnalisysTable' && pitsTable.text().indexOf('Technical problems') === -1) {
 				pitsData = $.map(pitsTable.find('tr:gt(0)'), function(row) {
@@ -64,7 +64,7 @@ window.apples.analysis = window.apples.analysis || (function($) {
 			if (pitsTable.text().indexOf('Technical problems') !== -1) {
 				tpData = getTechnicalProblems(pitsTable);
 			} else {
-				pitsTable = $('table:eq(' + (19 + isPracticeSet) + ')', data);
+				pitsTable = $('table:eq(' + (20 + isPracticeSet) + ')', data);
 
 				if (pitsTable.text().indexOf('Technical problems') !== -1) {
 					tpData = getTechnicalProblems(pitsTable);
@@ -216,7 +216,7 @@ window.apples.analysis = window.apples.analysis || (function($) {
 
 			if (preferences.SettingsSetup.RA.Avg) {
 				var lap = 1,
-					tableElem = $('table:eq(' + (18 + isPracticeSet + isOldSeason) + ')');
+					tableElem = $('table:eq(' + (19 + isPracticeSet + isOldSeason) + ')');
 
 				if (tableElem.parent().attr('id') !== 'dvFinAnalisysTable' && tableElem.text().indexOf('Technical problems') === -1) {
 					var rows = tableElem.find('tr');
