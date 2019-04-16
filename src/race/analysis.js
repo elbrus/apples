@@ -19,7 +19,8 @@ window.apples.analysis = window.apples.analysis || (function($) {
 			var isPracticeSet = $('#PracticeData', data).length ? 0 : -2,
 				setupData = $('table:eq(' + (5 + isPracticeSet) + ') tr:last > td:gt(0)', data),
 				risksData = $('table:eq(' + (6 + isPracticeSet) + ') tr:last > td', data),
-				positionData = $('table:eq(' + (10 + isPracticeSet) + ') tr:last > td', data),
+				positionData = $('table:eq(' + (10 + isPracticeSet) + ') tr:first table:first tr:last > td', data),
+				carPointsData = $('table:eq(' + (10 + isPracticeSet) + ') tr:last > td', data),
 				rlData = getRaceLapsData($('table:eq(' + (3 + isPracticeSet) + ') tr:gt(0)', data)),
 				lap = 1,
 				pitsData = [],
@@ -107,6 +108,7 @@ window.apples.analysis = window.apples.analysis || (function($) {
 					};
 				}),
 				Position: [$.trim(positionData.eq(0).text()), $.trim(positionData.eq(1).text())],
+				CarPoints: [$.trim(carPointsData.eq(0).text()), $.trim(carPointsData.eq(1).text()), $.trim(carPointsData.eq(2).text())],
 				Boost: $('a[style="color:lime;font-weight:bold;"]', data).map(function() {
 					return parseInt($(this).text(), 10);
 				}).toArray(),

@@ -4,3 +4,4 @@ npm-debug.log
 *.php
 applesForum.js
 apples.js
+.DS_Store
