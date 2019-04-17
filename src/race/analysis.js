@@ -83,7 +83,7 @@ window.apples.analysis = window.apples.analysis || (function($) {
 					Susp: $.trim(setupData.eq(5).text())
 				},
 				Risks: {
-					Start: $.trim($('table:eq(' + (6 + isPracticeSet) + ') tr:eq(2)', data).text()),
+					Start: $.trim($('table:eq(' + (6 + isPracticeSet) + ') tr:eq(5)', data).text()),
 					Overtake: $.trim(risksData.eq(0).text()),
 					Defend: $.trim(risksData.eq(1).text()),
 					DryClear: $.trim(risksData.eq(2).text()),
