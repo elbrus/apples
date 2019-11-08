@@ -2,9 +2,22 @@ window.apples.qualify2 = window.apples.qualify2 || (function($) {
 	'use strict';
 
 	var Qualify = function() {
+		function compareTyresWithWeather() {
+			var weather = $('table:eq(3) img:eq(1)').attr('title');
+			var tyres = $('#Tyres').val();
+
+			if (tyres && ((weather === 'Rain' && tyres !== 6) || (weather !== 'Rain' && tyres === 6))) {
+				$('#Tyres').parent().css('background-color', 'red');
+			}
+		}
+
 		this.addFunctionality = function() {
-			if (preferences.SettingsSetup.Q2 && $('input[type="submit"]:not(:disabled)').length)
+			if (preferences.SettingsSetup.Q2 && $('input[type="submit"]:not(:disabled)').length) {
 				$('table:eq(10) th:first').append('<br>' + getTemperatureChange());
+
+				$('#Tyres').on('change', compareTyresWithWeather);
+				compareTyresWithWeather();
+			}
 		};
 
 		this.getInfo = function(success, error) {

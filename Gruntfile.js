@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
 	grunt.initConfig({
 		jshint: {
-		 	main: ['src/**/*.js']
+			main: ['src/**/*.js']
 		},
 		uglify: {
 			main: {
