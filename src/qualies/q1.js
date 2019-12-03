@@ -79,7 +79,7 @@ window.apples.qualify1 = window.apples.qualify1 || (function($) {
 			var weather = $('table:eq(3) img:first').attr('title');
 			var tyres = $('#Tyres').val();
 
-			if (tyres && ((weather === 'Rain' && tyres !== 6) || (weather !== 'Rain' && tyres === 6))) {
+			if (tyres && ((weather === 'Rain' && tyres !== '6') || (weather !== 'Rain' && tyres === '6'))) {
 				$('#Tyres').parent().css('background-color', 'red');
 			}
 		}

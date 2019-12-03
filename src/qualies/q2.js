@@ -6,7 +6,7 @@ window.apples.qualify2 = window.apples.qualify2 || (function($) {
 			var weather = $('table:eq(3) img:eq(1)').attr('title');
 			var tyres = $('#Tyres').val();
 
-			if (tyres && ((weather === 'Rain' && tyres !== 6) || (weather !== 'Rain' && tyres === 6))) {
+			if (tyres && ((weather === 'Rain' && tyres !== '6') || (weather !== 'Rain' && tyres === '6'))) {
 				$('#Tyres').parent().css('background-color', 'red');
 			}
 		}
