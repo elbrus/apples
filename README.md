@@ -1,14 +1,18 @@
 # apples
 
 ## Requirements
-* git
-* npm
+
+- git
+- yarn
 
 ## Download
+
 `git clone https://github.com/elbrus/apples.git`
 
 ## Install plugins
-`npm install`
+
+`yarn install`
 
 ## Prepare add-on
+
 `grunt`
