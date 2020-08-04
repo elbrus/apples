@@ -15,4 +15,4 @@
 
 ## Prepare add-on
 
-`grunt`
+`yarn grunt`
