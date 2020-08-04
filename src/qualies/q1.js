@@ -112,6 +112,10 @@ window.apples.qualify1 =
 				return window.preferences.SetupOffset[isRain ? "Wet" : "Dry"][part];
 			}
 
+			function prepareSetup(setup) {
+				return Math.min(Math.max(Math.round(setup), 0), 999);
+			}
+
 			this.calcSetup = function (driverData) {
 				if (window.trackCoefs) {
 					var raceID = $("div.thirtyseven a:first").attr("href").split("=")[1];
@@ -120,186 +124,111 @@ window.apples.qualify1 =
 						var wing, engine, brakes, gear, susp;
 						var tempData = $("table:eq(3) img:first");
 						var isRain = tempData.attr("title") === "Rain";
-						var temp = getTemperature(tempData.parent().text());
+						var temp = getTemperature(tempData.parent().text()).replace(
+							"°",
+							""
+						);
 						var partsData = $("table:eq(6)");
 
-						wing = Math.round(
-							Math.min(
-								Math.max(
-									((raceCoefs[1] +
-										temp * getSetup(isRain, "wing") +
-										getSetupOffset(isRain, "wing")) *
-										(765 - driverData.Talent)) /
-										765 -
-										partsData.find("tr:eq(2) td:eq(5)").text() * 10 +
-										partsData.find("tr:eq(2) td:eq(1)").text() * 15 +
-										partsData.find("tr:eq(3) td:eq(1)").text() * 15 -
-										partsData.find("tr:eq(3) td:eq(5)").text() * 8 +
-										(partsData
-											.find("tr:eq(2) td:eq(6)")
-											.text()
-											.replace("%", "") *
-											25) /
-											100 -
-										(partsData
-											.find("tr:eq(2) td:eq(2)")
-											.text()
-											.replace("%", "") *
-											28) /
-											100 -
-										(partsData
-											.find("tr:eq(3) td:eq(2)")
-											.text()
-											.replace("%", "") *
-											28) /
-											100 +
-										(partsData
-											.find("tr:eq(3) td:eq(6)")
-											.text()
-											.replace("%", "") *
-											15) /
-											100,
-									999
-								),
-								0
-							)
+						wing = prepareSetup(
+							((raceCoefs[0] +
+								temp * getSetup(isRain, "wing") +
+								getSetupOffset(isRain, "wing")) *
+								(765 - driverData.Talent)) /
+								765 -
+								partsData.find("tr:eq(2) td:eq(5)").text() * 10 +
+								partsData.find("tr:eq(2) td:eq(1)").text() * 15 +
+								partsData.find("tr:eq(3) td:eq(1)").text() * 15 -
+								partsData.find("tr:eq(3) td:eq(5)").text() * 8 +
+								(partsData.find("tr:eq(2) td:eq(6)").text().replace("%", "") *
+									25) /
+									100 -
+								(partsData.find("tr:eq(2) td:eq(2)").text().replace("%", "") *
+									28) /
+									100 -
+								(partsData.find("tr:eq(3) td:eq(2)").text().replace("%", "") *
+									28) /
+									100 +
+								(partsData.find("tr:eq(3) td:eq(6)").text().replace("%", "") *
+									15) /
+									100
 						);
-						engine = Math.round(
-							Math.min(
-								Math.max(
-									((raceCoefs[2] +
-										temp * getSetup(isRain, "engine") +
-										getSetupOffset(isRain, "engine")) *
-										(605 - driverData.Exp)) /
-										605 -
-										30 +
-										driverData.Agr * 0.3 +
-										partsData.find("tr:eq(4) td:eq(1)").text() * 16 +
-										partsData.find("tr:eq(5) td:eq(5)").text() * 5 +
-										partsData.find("tr:eq(6) td:eq(5)").text() * 3 -
-										(partsData
-											.find("tr:eq(4) td:eq(2)")
-											.text()
-											.replace("%", "") *
-											50) /
-											100 -
-										(partsData
-											.find("tr:eq(5) td:eq(6)")
-											.text()
-											.replace("%", "") *
-											7) /
-											100 +
-										(partsData
-											.find("tr:eq(6) td:eq(6)")
-											.text()
-											.replace("%", "") *
-											5) /
-											100,
-									999
-								),
-								0
-							)
+						engine = prepareSetup(
+							((raceCoefs[2] +
+								temp * getSetup(isRain, "engine") +
+								getSetupOffset(isRain, "engine")) *
+								(605 - driverData.Exp)) /
+								605 -
+								30 +
+								driverData.Agr * 0.3 +
+								partsData.find("tr:eq(4) td:eq(1)").text() * 16 +
+								partsData.find("tr:eq(5) td:eq(5)").text() * 5 +
+								partsData.find("tr:eq(6) td:eq(5)").text() * 3 -
+								(partsData.find("tr:eq(4) td:eq(2)").text().replace("%", "") *
+									50) /
+									100 -
+								(partsData.find("tr:eq(5) td:eq(6)").text().replace("%", "") *
+									7) /
+									100 +
+								(partsData.find("tr:eq(6) td:eq(6)").text().replace("%", "") *
+									5) /
+									100
 						);
-						brakes = Math.round(
-							Math.min(
-								Math.max(
-									raceCoefs[3] +
-										temp * getSetup(isRain, "brakes") +
-										getSetupOffset(isRain, "brakes") -
-										driverData.Talent * 0.5 +
-										partsData.find("tr:eq(2) td:eq(5)").text() * 6 -
-										partsData.find("tr:eq(5) td:eq(1)").text() * 29 +
-										partsData.find("tr:eq(6) td:eq(5)").text() * 6 -
-										(partsData
-											.find("tr:eq(2) td:eq(6)")
-											.text()
-											.replace("%", "") *
-											14) /
-											100 +
-										(partsData
-											.find("tr:eq(5) td:eq(2)")
-											.text()
-											.replace("%", "") *
-											71) /
-											100 -
-										(partsData
-											.find("tr:eq(6) td:eq(6)")
-											.text()
-											.replace("%", "") *
-											9) /
-											100,
-									999
-								),
-								0
-							)
+						brakes = prepareSetup(
+							raceCoefs[3] +
+								temp * getSetup(isRain, "brakes") +
+								getSetupOffset(isRain, "brakes") -
+								driverData.Talent * 0.5 +
+								partsData.find("tr:eq(2) td:eq(5)").text() * 6 -
+								partsData.find("tr:eq(5) td:eq(1)").text() * 29 +
+								partsData.find("tr:eq(6) td:eq(5)").text() * 6 -
+								(partsData.find("tr:eq(2) td:eq(6)").text().replace("%", "") *
+									14) /
+									100 +
+								(partsData.find("tr:eq(5) td:eq(2)").text().replace("%", "") *
+									71) /
+									100 -
+								(partsData.find("tr:eq(6) td:eq(6)").text().replace("%", "") *
+									9) /
+									100
 						);
-						gear = Math.round(
-							Math.min(
-								Math.max(
-									raceCoefs[4] +
-										temp * getSetup(isRain, "gear") +
-										getSetupOffset(isRain, "gear") +
-										driverData.Conc * 0.5 -
-										partsData.find("tr:eq(6) td:eq(1)").text() * 41 +
-										partsData.find("tr:eq(6) td:eq(5)").text() * 9 +
-										(partsData
-											.find("tr:eq(6) td:eq(2)")
-											.text()
-											.replace("%", "") *
-											108) /
-											100 -
-										(partsData
-											.find("tr:eq(6) td:eq(6)")
-											.text()
-											.replace("%", "") *
-											14) /
-											100,
-									999
-								),
-								0
-							)
+						gear = prepareSetup(
+							raceCoefs[4] +
+								temp * getSetup(isRain, "gear") +
+								getSetupOffset(isRain, "gear") +
+								driverData.Conc * 0.5 -
+								partsData.find("tr:eq(6) td:eq(1)").text() * 41 +
+								partsData.find("tr:eq(6) td:eq(5)").text() * 9 +
+								(partsData.find("tr:eq(6) td:eq(2)").text().replace("%", "") *
+									108) /
+									100 -
+								(partsData.find("tr:eq(6) td:eq(6)").text().replace("%", "") *
+									14) /
+									100
 						);
-						susp = Math.round(
-							Math.min(
-								Math.max(
-									raceCoefs[5] +
-										temp * getSetup(isRain, "suspension") +
-										getSetupOffset(isRain, "suspension") +
-										driverData.Exp * 0.75 +
-										driverData.Weight * 2 +
-										(isRain ? driverData.TI * 0.11 : 0) -
-										partsData.find("tr:eq(2) td:eq(5)").text() * 14 -
-										partsData.find("tr:eq(3) td:eq(5)").text() * 12 +
-										partsData.find("tr:eq(4) td:eq(5)").text() * 6 +
-										partsData.find("tr:eq(7) td:eq(1)").text() * 31 +
-										(partsData
-											.find("tr:eq(2) td:eq(6)")
-											.text()
-											.replace("%", "") *
-											36) /
-											100 +
-										(partsData
-											.find("tr:eq(3) td:eq(6)")
-											.text()
-											.replace("%", "") *
-											22) /
-											100 -
-										(partsData
-											.find("tr:eq(4) td:eq(6)")
-											.text()
-											.replace("%", "") *
-											11) /
-											100 -
-										(partsData
-											.find("tr:eq(7) td:eq(2)")
-											.text()
-											.replace("%", "") *
-											69) /
-											100,
-									999
-								),
-								0
-							)
+						susp = prepareSetup(
+							raceCoefs[5] +
+								temp * getSetup(isRain, "suspension") +
+								getSetupOffset(isRain, "suspension") +
+								driverData.Exp * 0.75 +
+								driverData.Weight * 2 +
+								(isRain ? driverData.TI * 0.11 : 0) -
+								partsData.find("tr:eq(2) td:eq(5)").text() * 14 -
+								partsData.find("tr:eq(3) td:eq(5)").text() * 12 +
+								partsData.find("tr:eq(4) td:eq(5)").text() * 6 +
+								partsData.find("tr:eq(7) td:eq(1)").text() * 31 +
+								(partsData.find("tr:eq(2) td:eq(6)").text().replace("%", "") *
+									36) /
+									100 +
+								(partsData.find("tr:eq(3) td:eq(6)").text().replace("%", "") *
+									22) /
+									100 -
+								(partsData.find("tr:eq(4) td:eq(6)").text().replace("%", "") *
+									11) /
+									100 -
+								(partsData.find("tr:eq(7) td:eq(2)").text().replace("%", "") *
+									69) /
+									100
 						);
 
 						window.FillSetup(wing, wing, engine, brakes, gear, susp);
