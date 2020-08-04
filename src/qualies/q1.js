@@ -94,8 +94,8 @@ window.apples.qualify1 =
 			}
 
 			this.addFunctionality = function () {
-				compareTyresWithWeather();
 				$("#Tyres").on("change", compareTyresWithWeather);
+				compareTyresWithWeather();
 
 				if (window.trackCoefs) {
 					$("table:eq(6) th:first").append(
@@ -117,7 +117,7 @@ window.apples.qualify1 =
 			}
 
 			this.calcSetup = function (driverData) {
-				if (window.trackCoefs) {
+				if (driverData && window.trackCoefs) {
 					var raceID = $("div.thirtyseven a:first").attr("href").split("=")[1];
 					var raceCoefs = window.trackCoefs[raceID];
 					if (raceCoefs) {
