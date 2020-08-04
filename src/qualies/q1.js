@@ -94,8 +94,8 @@ window.apples.qualify1 =
 			}
 
 			this.addFunctionality = function () {
-				$("#Tyres").on("change", compareTyresWithWeather);
 				compareTyresWithWeather();
+				$("#Tyres").on("change", compareTyresWithWeather);
 
 				if (window.trackCoefs) {
 					$("table:eq(6) th:first").append(
@@ -155,10 +155,11 @@ window.apples.qualify1 =
 						);
 						engine = prepareSetup(
 							((raceCoefs[2] +
+								30 +
 								temp * getSetup(isRain, "engine") +
 								getSetupOffset(isRain, "engine")) *
-								(605 - driverData.Exp)) /
-								605 -
+								(-605 - driverData.Exp)) /
+								-605 -
 								30 +
 								driverData.Agr * 0.3 +
 								partsData.find("tr:eq(4) td:eq(1)").text() * 16 +
@@ -169,7 +170,7 @@ window.apples.qualify1 =
 									100 -
 								(partsData.find("tr:eq(5) td:eq(6)").text().replace("%", "") *
 									7) /
-									100 +
+									100 -
 								(partsData.find("tr:eq(6) td:eq(6)").text().replace("%", "") *
 									5) /
 									100
@@ -231,7 +232,7 @@ window.apples.qualify1 =
 									100
 						);
 
-						window.FillSetup(wing, wing, engine, brakes, gear, susp);
+						window.FillSetup(wing, wing, engine, brakes, gear, susp, "1");
 					}
 				}
 
