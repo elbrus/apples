@@ -50,7 +50,9 @@ window.apples.forum =
 								Driver.getInfo(
 									link.attr("href"),
 									function (driverData) {
-										Qualify1.calcSetup(driverData);
+										if (driverData) {
+											Qualify1.calcSetup(driverData);
+										}
 									},
 									hideOverlay
 								);
