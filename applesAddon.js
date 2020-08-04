@@ -91,20 +91,6 @@ window.preferences = window.preferences || {
 			suspension: -258,
 		},
 	},
-	SettingsSetup: {
-		DL: {
-			Sort: true,
-			Skills: true,
-		},
-		TDL: {
-			Sort: true,
-			Skills: true,
-		},
-		RA: {
-			Avg: true,
-			Total: true,
-		},
-	},
 };
 
 window.trackCoefs = window.trackCoefs || {
