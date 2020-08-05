@@ -28,47 +28,6 @@ window.apples.forum =
 				false
 			);
 
-			this.sendData = function () {
-				$(".overlay, .overlay-message").show();
-
-				resetParams();
-
-				fillInfo();
-			};
-
-			this.calcQ1Setup = function () {
-				$(".overlay, .overlay-message").show();
-
-				$.ajax({
-					type: "GET",
-					url: "/gpro.asp",
-					success: function (data) {
-						if (data) {
-							var link = $('a[href^="DriverProfile"]', data);
-
-							if (link.length) {
-								Driver.getInfo(
-									link.attr("href"),
-									function (driverData) {
-										if (driverData) {
-											Qualify1.calcSetup(driverData);
-										}
-									},
-									hideOverlay
-								);
-							} else {
-								hideOverlay();
-							}
-						} else {
-							hideOverlay();
-						}
-					},
-					error: hideOverlay,
-				});
-
-				Qualify1.calcSetup();
-			};
-
 			function resetParams() {
 				params = {
 					ID: null,
@@ -295,6 +254,101 @@ window.apples.forum =
 					}
 				);
 			}
+
+			this.sendData = function () {
+				$(".overlay, .overlay-message").show();
+
+				resetParams();
+
+				fillInfo();
+			};
+
+			this.calcQ1Setup = function () {
+				$(".overlay, .overlay-message").show();
+
+				$.ajax({
+					type: "GET",
+					url: "/gpro.asp",
+					success: function (data) {
+						if (data) {
+							var link = $('a[href^="DriverProfile"]', data);
+
+							if (link.length) {
+								Driver.getInfo(
+									link.attr("href"),
+									function (driverData) {
+										Qualify1.calcSetup(driverData);
+									},
+									hideOverlay
+								);
+							} else {
+								hideOverlay();
+							}
+						} else {
+							hideOverlay();
+						}
+					},
+					error: hideOverlay,
+				});
+			};
+
+			this.calcQ2Setup = function () {
+				$(".overlay, .overlay-message").show();
+
+				$.ajax({
+					type: "GET",
+					url: "/gpro.asp",
+					success: function (data) {
+						if (data) {
+							var link = $('a[href^="DriverProfile"]', data);
+
+							if (link.length) {
+								Driver.getInfo(
+									link.attr("href"),
+									function (driverData) {
+										Qualify2.calcSetup(driverData);
+									},
+									hideOverlay
+								);
+							} else {
+								hideOverlay();
+							}
+						} else {
+							hideOverlay();
+						}
+					},
+					error: hideOverlay,
+				});
+			};
+
+			this.calcTestsSetup = function () {
+				$(".overlay, .overlay-message").show();
+
+				$.ajax({
+					type: "GET",
+					url: "/gpro.asp",
+					success: function (data) {
+						if (data) {
+							var link = $('a[href^="DriverProfile"]', data);
+
+							if (link.length) {
+								Driver.getInfo(
+									link.attr("href"),
+									function (driverData) {
+										Testing.calcSetup(driverData);
+									},
+									hideOverlay
+								);
+							} else {
+								hideOverlay();
+							}
+						} else {
+							hideOverlay();
+						}
+					},
+					error: hideOverlay,
+				});
+			};
 		};
 
 		return new ApplesForum();
