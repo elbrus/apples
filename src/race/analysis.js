@@ -246,13 +246,8 @@ window.apples.analysis =
 				var i,
 					iLen,
 					isPracticeSet = $("#PracticeData").length ? 0 : -2,
-					isOldSeason =
-						parseInt(
-							$("h1.block").text().split("Season ")[1].split(" -")[0],
-							10
-						) < 55
-							? -1
-							: 0,
+					season = $("h1.block").text().split("Season ")[1].split(" -")[0],
+					isOldSeason = parseInt(season, 10) < 55 ? -1 : 0,
 					data = getRaceLapsData(
 						$("table:eq(" + (3 + isPracticeSet) + ") tr:gt(0)")
 					);
