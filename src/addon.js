@@ -37,8 +37,6 @@
 	var applesAddon = function () {
 		var pageType = checkPage(location.href);
 
-		// hideAdBlock();
-
 		// add send data link
 		if ($('a[href*="UpdateProfile.asp"]').length) {
 			var onlineInfo = $("#managersonline");
@@ -70,19 +68,6 @@
 			});
 
 			return result;
-		}
-
-		function hideAdBlock() {
-			$("#blockblockA").each(function () {
-				var inner = $(this).parent();
-
-				if (inner.siblings().length) {
-					inner.remove();
-				} else {
-					inner.parent().remove();
-				}
-			});
-			$(".adsbygoogle").parent().remove();
 		}
 	};
 
