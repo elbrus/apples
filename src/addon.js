@@ -81,7 +81,7 @@
 	window.apples.qualify1,
 	window.apples.qualify2,
 	window.apples.update,
-	window.apples.setup,
+	window.apples.raceSetup,
 	window.apples.staff,
 	window.apples.tests
 );

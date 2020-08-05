@@ -92,9 +92,25 @@ window.apples.tests =
 				var tempData = $("table:eq(3) img:first");
 				var isRain = tempData.attr("title") === "Rain";
 				var temp = getTemperature(tempData.parent().text()).replace("°", "");
+				var setup = Setup.calc(
+					driverData,
+					raceID,
+					isRain,
+					temp,
+					$("table:eq(6)")
+				);
 
-				Setup.calc(driverData, raceID, isRain, temp, $("table:eq(6)"));
-
+				if (setup)
+					window.FillSetup(
+						setup.wing,
+						setup.wing,
+						setup.engine,
+						setup.brakes,
+						setup.gear,
+						setup.susp,
+						"1",
+						"0"
+					);
 				$(".overlay, .overlay-message").hide();
 			};
 		};

@@ -124,13 +124,17 @@ window.apples.setup =
 									100
 						);
 
-						if (window.FillSetup) {
-							window.FillSetup(wing, wing, engine, brakes, gear, susp, "1");
-						} else {
-							window.QuickLink(wing, wing, engine, brakes, gear, susp);
-						}
+						return {
+							wing: wing,
+							engine: engine,
+							brakes: brakes,
+							gear: gear,
+							susp: susp,
+						};
 					}
 				}
+
+				return undefined;
 			};
 		};
 
