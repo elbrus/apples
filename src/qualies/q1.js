@@ -94,13 +94,15 @@ window.apples.qualify1 =
 			}
 
 			this.addFunctionality = function () {
-				compareTyresWithWeather();
-				$("#Tyres").on("change", compareTyresWithWeather);
+				if ($('input[type="submit"]:not(:disabled)').length) {
+					compareTyresWithWeather();
+					$("#Tyres").on("change", compareTyresWithWeather);
 
-				if (window.trackCoefs) {
-					$("table:eq(6) th:first").append(
-						'<br><a class="lime" href="#" onclick="window.apples.forum.calcQ1Setup()">Calculate setup</a>'
-					);
+					if (window.trackCoefs) {
+						$("table:eq(6) th:first").append(
+							'<br><a class="lime" href="#" onclick="window.apples.forum.calcQ1Setup()">Calculate setup</a>'
+						);
+					}
 				}
 			};
 
