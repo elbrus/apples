@@ -7,7 +7,8 @@
 	UpdateCar,
 	RaceSetup,
 	StaffAndFacilities,
-	Testing
+	Testing,
+	Sponsor
 ) {
 	"use strict";
 
@@ -21,6 +22,7 @@
 		"RaceSetup",
 		"StaffAndFacilities",
 		"Testing",
+		"NegotiateSponsor",
 	];
 	var ACTION = {
 		1: Qualify2.addFunctionality,
@@ -32,6 +34,7 @@
 		7: RaceSetup.addFunctionality,
 		8: StaffAndFacilities.addFunctionality,
 		9: Testing.addFunctionality,
+		10: Sponsor.addFunctionality,
 	};
 
 	var applesAddon = function () {
@@ -83,5 +86,6 @@
 	window.apples.update,
 	window.apples.raceSetup,
 	window.apples.staff,
-	window.apples.tests
+	window.apples.tests,
+	window.apples.sponsor
 );

@@ -9,6 +9,7 @@ module.exports = function (grunt) {
 					"applesForum.js": [
 						"src/namespace.js",
 						"src/utils/*.js",
+						"src/sponsors/*.js",
 						"src/staff/*.js",
 						"src/market/*.js",
 						"src/qualies/*.js",
