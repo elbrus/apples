@@ -59,6 +59,15 @@ window.apples.qualify2 =
 				}
 			}
 
+			function getQNumbers() {
+				var result = $("table:eq(10) a").attr("href");
+
+				result = result.substring(result.indexOf("(") + 1);
+				result = result.substring(0, result.indexOf(")"));
+
+				return result.split(",");
+			}
+
 			this.addFunctionality = function () {
 				if ($('input[type="submit"]:not(:disabled)').length) {
 					compareTyresWithWeather();
@@ -85,15 +94,20 @@ window.apples.qualify2 =
 					$("table:eq(10)")
 				);
 
-				if (setup)
+				if (setup) {
+					var q1Numbers = getQNumbers();
+					var wingDiff = (q1Numbers[0] - q1Numbers[1]) / 2;
+
 					window.QuickLink(
-						setup.wing,
-						setup.wing,
+						Math.max(Math.min(setup.wing + wingDiff, 999), 0),
+						Math.max(Math.min(setup.wing - wingDiff, 999), 0),
 						setup.engine,
 						setup.brakes,
 						setup.gear,
 						setup.susp
 					);
+				}
+
 				$(".overlay, .overlay-message").hide();
 			};
 
