@@ -40,13 +40,13 @@ window.apples.sponsor =
 			7: 3,
 		};
 		var ContractDuration = {
-			1: 0,
-			2: 0,
-			3: 0,
-			4: 0,
-			5: 1,
-			6: 1,
-			7: 2,
+			1: 2,
+			2: 2,
+			3: 2,
+			4: 2,
+			5: 3,
+			6: 3,
+			7: 4,
 		};
 
 		var Sponsor = function () {
