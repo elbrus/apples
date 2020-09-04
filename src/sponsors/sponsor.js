@@ -67,7 +67,7 @@ window.apples.sponsor =
 				var radioButtons = $('input[type="radio"]');
 
 				if (radioButtons.length) {
-					var question = $.trim($('font[color="yellow"]').text());
+					var question = $.trim($('font[color="yellow"]').first().text());
 
 					if (question) {
 						var skills = getSponsorSkills();
