@@ -74,7 +74,7 @@ window.apples.sponsor =
 
 						if (
 							question ===
-							"Which area of the car would our advertisement be placed on?"
+							"Which area of the car would our advertisment be placed on?"
 						) {
 							radioButtons.eq(CarArea[skills.Image]).click();
 						}
